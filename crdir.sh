@@ -18,8 +18,6 @@ Help()
 arguments=$#
 arguments=$(( arguments - 1))
 
-echo $list_arguments
-
 i=0
 list_arguments=( "$@" )
 
