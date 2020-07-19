@@ -18,22 +18,29 @@ Help()
 arguments=$#
 arguments=$(( arguments - 1))
 
+echo $list_arguments
+
 i=0
 list_arguments=( "$@" )
+
+while getopts ":h" option; do
+   case $option in
+      h) # display Help
+         Help
+         exit;;
+   esac
+done
 
 if [[ $arguments == -1 ]]
 then
   echo "Syntax Error!!"
   echo "Syntax : ./crdir.sh <dir> <subdir_1> <subdir_2> ... <subdir_N>"
   echo "For more information type: ./crdir.sh -h"
-elif [[ "$list_arguments[0]" -eq "-h" ]]
-then
-  Help
 else
   until [ $i -gt $arguments ]
   do
-    mkdir ${list_arguments[i]}
-    cd ${list_arguments[i]}
+    mkdir "${list_arguments[i]}"
+    cd "${list_arguments[i]}"
     i=$(( i +1 ))
   done
 fi
